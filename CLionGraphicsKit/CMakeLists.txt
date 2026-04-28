@@ -25,5 +25,6 @@ add_executable(CLionGraphicsKit main.cpp
         Legordulo.cpp
         Legordulo.hpp
         ../Sudoku.cpp
-        ../Sudoku.hpp)
+        ../Sudoku.hpp
+        Sudoku.hpp)
 target_link_libraries(CLionGraphicsKit graphics)
