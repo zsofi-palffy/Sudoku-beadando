@@ -23,5 +23,7 @@ add_executable(CLionGraphicsKit main.cpp
         Kivalaszto_os.cpp
         Kivalaszto_os.hpp
         Legordulo.cpp
-        Legordulo.hpp)
+        Legordulo.hpp
+        ../Sudoku.cpp
+        ../Sudoku.hpp)
 target_link_libraries(CLionGraphicsKit graphics)
