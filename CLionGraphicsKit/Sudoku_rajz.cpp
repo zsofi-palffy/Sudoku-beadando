@@ -1,17 +1,17 @@
-#include "Sudoku.hpp"
+#include "Sudoku_rajz.hpp"
 #include <iostream>
 
 using namespace std;
 using namespace genv;
 
-Sudoku::Sudoku(int szelesseg, int magassag):
+Sudoku_rajz::Sudoku_rajz(int szelesseg, int magassag):
                szelesseg(szelesseg), magassag(magassag)
 {
     menu = true;
     jatek = false;
 }
 
-void Sudoku::draw() const {
+void Sudoku_rajz::draw() const {
     gout.open(szelesseg, magassag);
     gout << color(200, 200, 200)
          << move_to(0,0)

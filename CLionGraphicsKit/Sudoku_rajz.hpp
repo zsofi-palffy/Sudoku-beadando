@@ -2,9 +2,9 @@
 #define CLIONGRAPHICSKIT_SUDOKU_H
 #include "Widget.hpp"
 
-class Sudoku {
+class Sudoku_rajz {
 public:
-    Sudoku(int, int);
+    Sudoku_rajz(int, int);
 
     virtual void draw() const;
     virtual void handle(genv::event);

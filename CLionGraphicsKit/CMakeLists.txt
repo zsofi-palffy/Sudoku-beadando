@@ -24,7 +24,8 @@ add_executable(CLionGraphicsKit main.cpp
         Kivalaszto_os.hpp
         Legordulo.cpp
         Legordulo.hpp
-        ../Sudoku.cpp
-        ../Sudoku.hpp
-        Sudoku.hpp)
+        Sudoku_rajz.hpp
+        Sudoku_rajz.hpp
+        Jatek_mester.cpp
+        Jatek_mester.hpp)
 target_link_libraries(CLionGraphicsKit graphics)
