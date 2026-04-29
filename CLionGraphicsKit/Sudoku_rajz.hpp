@@ -9,8 +9,9 @@ public:
     virtual void draw() const;
     virtual void handle(genv::event);
 
+    void racs() const;
+
 protected:
-    bool menu, jatek; //még nem biztos, hogy ezeket ide akarom
     int szelesseg, magassag; //az ablak nagysága
 };
 
