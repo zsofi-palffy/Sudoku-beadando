@@ -27,5 +27,7 @@ add_executable(CLionGraphicsKit main.cpp
         Sudoku_rajz.cpp
         Sudoku_rajz.hpp
         Jatek_mester.cpp
-        Jatek_mester.hpp)
+        Jatek_mester.hpp
+        Os_alkalmazas.cpp
+        Os_alkalmazas.hpp)
 target_link_libraries(CLionGraphicsKit graphics)
