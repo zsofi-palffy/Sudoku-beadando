@@ -7,8 +7,8 @@
 
 using namespace genv;
 
-Szamlalo_nyilakkal::Szamlalo_nyilakkal(int x, int y, int sizex, int sizey, int minimum, int maximum):
-                    Szamlalo_os(x, y, sizex, sizey, minimum, maximum, 0)
+Szamlalo_nyilakkal::Szamlalo_nyilakkal(Os_alkalmazas* szulo, int x, int y, int sizex, int sizey, int minimum, int maximum):
+                    Szamlalo_os(szulo, x, y, sizex, sizey, minimum, maximum, 0)
 {
 }
 

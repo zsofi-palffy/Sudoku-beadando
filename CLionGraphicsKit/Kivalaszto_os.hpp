@@ -6,7 +6,7 @@
 
 class Kivalaszto_os: public Widget {
 public:
-    Kivalaszto_os(int, int, int, int, int, std::vector<std::string>);
+    Kivalaszto_os(Os_alkalmazas*, int, int, int, int, int, std::vector<std::string>);
 
     virtual void rajzol() override;
     virtual void handle(genv::event ev) override;

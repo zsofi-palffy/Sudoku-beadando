@@ -7,7 +7,7 @@
 
 using namespace genv;
 
-Widget::Widget(int xx, int yy, int sx, int sy):
+Widget::Widget(Os_alkalmazas *szulo, int xx, int yy, int sx, int sy):
                x(xx), y(yy), sizex(sx), sizey(sy)
 {
 }

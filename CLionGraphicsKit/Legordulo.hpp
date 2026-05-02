@@ -6,7 +6,7 @@
 
 class Legordulo: public Kivalaszto_os{
 public:
-    Legordulo(int, int, int, int, int, std::vector<std::string>);
+    Legordulo(Os_alkalmazas*, int, int, int, int, int, std::vector<std::string>);
 
     virtual void rajzol() override;
     virtual void handle(genv::event ev) override;

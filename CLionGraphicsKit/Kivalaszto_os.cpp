@@ -7,8 +7,8 @@
 using namespace genv;
 using namespace std;
 
-Kivalaszto_os::Kivalaszto_os(int x, int y, int kissizex, int kissizey, int nagysize, std::vector<std::string> opciok):
-               Widget(x, y, kissizex, kissizey), nagysize(nagysize), opciok(opciok)
+Kivalaszto_os::Kivalaszto_os(Os_alkalmazas* szulo, int x, int y, int kissizex, int kissizey, int nagysize, std::vector<std::string> opciok):
+               Widget(szulo, x, y, kissizex, kissizey), nagysize(nagysize), opciok(opciok)
 {
 }
 

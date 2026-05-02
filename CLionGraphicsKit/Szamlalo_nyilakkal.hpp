@@ -5,7 +5,7 @@
 
 class Szamlalo_nyilakkal: public Szamlalo_os {
 public:
-    Szamlalo_nyilakkal(int, int, int, int, int, int);
+    Szamlalo_nyilakkal(Os_alkalmazas*, int, int, int, int, int, int);
 
     virtual void rajzol() override;
     virtual void handle(genv::event ev) override;

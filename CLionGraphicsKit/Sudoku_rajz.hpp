@@ -4,7 +4,7 @@
 
 class Sudoku_rajz:public Widget {
 public:
-    Sudoku_rajz(int, int, int, int);
+    Sudoku_rajz(Os_alkalmazas*, int, int, int, int);
 
     virtual void draw() const;
     virtual void handle(genv::event);

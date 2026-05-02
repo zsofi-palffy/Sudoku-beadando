@@ -4,8 +4,8 @@
 using namespace std;
 using namespace genv;
 
-Sudoku_rajz::Sudoku_rajz(int x, int y, int szelesseg, int magassag):
-Widget(x, y, szelesseg, magassag)
+Sudoku_rajz::Sudoku_rajz(Os_alkalmazas* szulo, int x, int y, int szelesseg, int magassag):
+Widget(szulo, x, y, szelesseg, magassag)
 {
 }
 

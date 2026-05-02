@@ -1,6 +1,5 @@
 #ifndef CLIONGRAPHICSKIT_JATEK_MESTER_H
 #define CLIONGRAPHICSKIT_JATEK_MESTER_H
-#include "Widget.hpp"
 
 class Jatek_mester {
 };

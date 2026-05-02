@@ -8,8 +8,8 @@
 
 using namespace genv;
 
-Szamlalo_os::Szamlalo_os(int x, int y, int sizex, int sizey, int mn, int mx, int szamol):
-             Widget(x, y, sizex, sizey), minimum(mn), maximum(mx), szam(szamol)
+Szamlalo_os::Szamlalo_os(Os_alkalmazas *szulo, int x, int y, int sizex, int sizey, int mn, int mx, int szamol):
+             Widget(szulo, x, y, sizex, sizey), minimum(mn), maximum(mx), szam(szamol)
 {
 }
 

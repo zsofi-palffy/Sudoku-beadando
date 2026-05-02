@@ -2,10 +2,11 @@
 #define CLIONGRAPHICSKIT_WIDGET_H
 #include "graphics.hpp"
 
+class Os_alkalmazas;
 
 class Widget {
 public:
-    Widget(int, int, int, int);
+    Widget(Os_alkalmazas*, int, int, int, int);
     bool jelenlegi(int, int);
 
     virtual void rajzol() = 0;
@@ -18,6 +19,7 @@ public:
 
 protected:
     int x, y, sizex, sizey;
+    Os_alkalmazas *szulo;
 
 };
 

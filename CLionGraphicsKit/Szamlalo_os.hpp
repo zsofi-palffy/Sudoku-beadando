@@ -5,7 +5,7 @@
 
 class Szamlalo_os: public Widget {
 public:
-    Szamlalo_os(int, int, int, int, int, int, int);
+    Szamlalo_os(Os_alkalmazas*, int, int, int, int, int, int, int);
 
     virtual void rajzol() override;
     virtual void handle(genv::event ev) override;
