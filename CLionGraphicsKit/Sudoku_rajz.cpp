@@ -4,12 +4,12 @@
 using namespace std;
 using namespace genv;
 
-Sudoku_rajz::Sudoku_rajz(Os_alkalmazas* szulo, int x, int y, int szelesseg, int magassag):
-Widget(szulo, x, y, szelesseg, magassag)
+Sudoku_rajz::Sudoku_rajz(Os_alkalmazas* szulo, int x, int y, int szelesseg, int magassag, bool kell):
+Widget(szulo, x, y, szelesseg, magassag, kell)
 {
 }
 
-void Sudoku_rajz::draw() const {
+void Sudoku_rajz::rajzol() {
     gout << color(200, 200, 200)
          << move_to(0,0)
          << box(sizex,sizey);

@@ -10,7 +10,7 @@ Os_alkalmazas::Os_alkalmazas(int szelesseg, int magassag):
 {
 }
 
-void Os_alkalmazas::register_widgets(Widget* w) {
+void Os_alkalmazas::register_widgets(Widget* w, bool kell) {
     widgets_.push_back(w);
 }
 

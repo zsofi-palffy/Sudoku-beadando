@@ -6,7 +6,7 @@ class Os_alkalmazas;
 
 class Widget {
 public:
-    Widget(Os_alkalmazas*, int, int, int, int);
+    Widget(Os_alkalmazas*, int, int, int, int, bool);
     bool jelenlegi(int, int);
 
     virtual void rajzol() = 0;
@@ -20,7 +20,7 @@ public:
 protected:
     int x, y, sizex, sizey;
     Os_alkalmazas *szulo;
-
+    bool kell;
 };
 
 #endif //CLIONGRAPHICSKIT_WIDGET_H

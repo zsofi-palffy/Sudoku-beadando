@@ -7,8 +7,8 @@
 using namespace genv;
 using namespace std;
 
-Legordulo::Legordulo(Os_alkalmazas* szulo, int x, int y, int kissizex, int kissizey, int nagysize, std::vector<std::string> opciok):
-           Kivalaszto_os(szulo, x, y, kissizex, kissizey, nagysize, opciok)
+Legordulo::Legordulo(Os_alkalmazas* szulo, int x, int y, int kissizex, int kissizey, bool kell, int nagysize, std::vector<std::string> opciok):
+           Kivalaszto_os(szulo, x, y, kissizex, kissizey, kell, nagysize, opciok)
 {
 }
 

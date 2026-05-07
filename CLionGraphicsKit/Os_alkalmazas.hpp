@@ -7,7 +7,7 @@ class Os_alkalmazas {
 public:
     Os_alkalmazas(int, int);
 
-    virtual void register_widgets(Widget* w);
+    virtual void register_widgets(Widget*, bool);
     virtual void event_loop();
 
 protected:

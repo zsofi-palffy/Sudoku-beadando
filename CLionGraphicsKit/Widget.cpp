@@ -4,12 +4,14 @@
 #include <ostream>
 
 #include "graphics.hpp"
+#include "Os_alkalmazas.hpp"
 
 using namespace genv;
 
-Widget::Widget(Os_alkalmazas *szulo, int xx, int yy, int sx, int sy):
-               x(xx), y(yy), sizex(sx), sizey(sy)
+Widget::Widget(Os_alkalmazas *szulo, int xx, int yy, int sx, int sy, bool kell):
+               x(xx), y(yy), sizex(sx), sizey(sy), kell(kell)
 {
+    szulo->register_widgets(this, kell);
 }
 
 int Widget::get_mentesint() const {
