@@ -13,10 +13,11 @@ void Sudoku_rajz::rajzol() {
     gout << color(200, 200, 200)
          << move_to(0,0)
          << box(sizex,sizey);
-    gout.load_font("LiberationSerif-BoldItalic.ttf", 45);
+    gout.load_font("LiberationSerif-BoldItalic.ttf", 85);
     gout << color(0,0,0)
-         << move_to(sizex/2 - 100,100)
+         << move_to(sizex/2 - 150,50)
          << text("Sudoku");
+    gout << refresh;
 }
 
 void Sudoku_rajz::racs() const{
@@ -80,4 +81,9 @@ void Sudoku_rajz::racs() const{
           gout << move_to(sizex/2 - sizex*0.4, sizey/2 - sizey*0.4 + 634 + i)
                << line_to(sizex/2 + sizex*0.4, sizey/2 + sizey*0.4 + 634 + i);
      }
+     gout << refresh;
+}
+
+void Sudoku_rajz::handle(genv::event) {
+
 }

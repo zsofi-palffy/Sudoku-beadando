@@ -20,7 +20,7 @@ public:
 protected:
     int x, y, sizex, sizey;
     Os_alkalmazas *szulo;
-    bool kell;
+    bool kell = true;
 };
 
 #endif //CLIONGRAPHICSKIT_WIDGET_H

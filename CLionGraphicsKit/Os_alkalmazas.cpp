@@ -1,4 +1,7 @@
 #include "Os_alkalmazas.hpp"
+
+#include <iostream>
+
 #include "graphics.hpp"
 #include "Widget.hpp"
 
@@ -8,10 +11,13 @@ using namespace genv;
 Os_alkalmazas::Os_alkalmazas(int szelesseg, int magassag):
                              szelesseg(szelesseg), magassag(magassag)
 {
+    gout.open(szelesseg, magassag);
 }
 
 void Os_alkalmazas::register_widgets(Widget* w, bool kell) {
-    widgets_.push_back(w);
+    if (kell) {
+        widgets_.push_back(w);
+    }
 }
 
 void Os_alkalmazas::event_loop() {
@@ -33,5 +39,6 @@ void Os_alkalmazas::event_loop() {
         for (Widget *w: widgets_) {
             w->rajzol();
         }
+        gout << refresh;
     }
 }

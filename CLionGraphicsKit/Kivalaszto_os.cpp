@@ -21,7 +21,8 @@ bool Kivalaszto_os::mindig() {
 }
 
 void Kivalaszto_os::rajzol() {
-    gout.load_font("LiberationSans-BoldItalic.ttf", 10, 30);
+    gout.load_font("LiberationSans-BoldItalic.ttf", 2*(sizex/30), 30);
+    gout << color(200,200,200);
 
     elemek(); //a lenyiló menü és a kiválasztott rózsaszínre szinezése
     for (int i = 0; i < nagysize; i++) {
@@ -33,15 +34,12 @@ void Kivalaszto_os::rajzol() {
                 gout << color(255,255,255); //fehér
             }
         }
-        else {
-            gout << color(23,23,23);
-        }
         gout << move_to(x, y + teglalapok[i])
              << box(sizex, sizey);
     }
 
     gout << color(0,0,0)
-         << move_to(x + 5, y + 5);
+         << move_to(x + 5, y + sizey/4);
     if (kivalasztva) {
         gout << text(kivalasztott);
         lenyitva = false;
@@ -49,33 +47,61 @@ void Kivalaszto_os::rajzol() {
         alapallas = false;
     }
     else if (alapallas) {
-        gout << text("Válassz egy lehetőséget!");
+        gout << text("Válassz egy szintet!");
     }
     else {
         gout << text(kivalasztott);
     }
 
     if (lenyitva) { //a választási lehetőségek szövegei
-        int hely = 0;
-        for (int j = ciklus; j < ciklus + nagysize; j++) {
-            gout << color(0,0,0)
-                 << move_to(x + 5, y + teglalapok[hely] + 5)
-                 << text(opciok[j]);
-            hely += 1;
+        if (opciok.size() > 0) {
+            int hely = 0;
+            if (opciok.size() >= nagysize) {
+                for (int j = ciklus; j < ciklus + nagysize; j++) {
+                    gout << color(0,0,0)
+                         << move_to(x + 5, y + teglalapok[hely] + 5)
+                         << text(opciok[j]);
+                    hely += 1;
+                }
+            }
+            else {
+                for (int j = 0; j < opciok.size(); j++) {
+                    gout << color(0,0,0)
+                         << move_to(x + 5, y + teglalapok[hely] + 5)
+                         << text(opciok[j]);
+                    hely += 1;
+                }
+            }
         }
     }
+
 }
 
 void Kivalaszto_os::handle(genv::event ev) {
     elemek(); //a rózsaszín kijelölés
-    for (int i = 0; i < teglalapok.size(); i++) {
-        if (ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[i] && ev.pos_y <= y + teglalapok[i] + sizey) {
-            rozsaszin = i;
+    if (opciok.size() > 0) {
+        if (opciok.size() >= nagysize) {
+            for (int i = 0; i < teglalapok.size(); i++) {
+                if (ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[i] && ev.pos_y <= y + teglalapok[i] + sizey) {
+                    rozsaszin = i;
+                }
+                else if (ev.pos_x < x || ev.pos_x > x + sizex) {
+                    rozsaszin = -1;
+                }
+            }
         }
-        else if (ev.pos_x < x || ev.pos_x > x + sizex) {
-            rozsaszin = -1;
+        else {
+            for (int i = 0; i < opciok.size(); i++) {
+                if (ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[i] && ev.pos_y <= y + teglalapok[i] + sizey) {
+                    rozsaszin = i;
+                }
+                else if (ev.pos_x < x || ev.pos_x > x + sizex) {
+                    rozsaszin = -1;
+                }
+            }
         }
     }
+
 
     //a fel- és legörgetés
     if (ev.type == ev_mouse && ev.button == btn_wheelup) {
@@ -88,19 +114,33 @@ void Kivalaszto_os::handle(genv::event ev) {
     //a kiválasztás
 
     int hely = 0;
-    for (int i = ciklus; i < ciklus + nagysize; i++) {
-        if (ev.type == ev_mouse && ev.button == btn_left && ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[hely] && ev.pos_y <= y + teglalapok[hely] + sizey) {
-            kivalasztva = true;
-            kivalasztott = opciok[i];
+    if (opciok.size() > 0) {
+        if (opciok.size() >= nagysize) {
+            for (int i = ciklus; i < ciklus + nagysize; i++) {
+                if (ev.type == ev_mouse && ev.button == btn_left && ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[hely] && ev.pos_y <= y + teglalapok[hely] + sizey) {
+                    kivalasztva = true;
+                    kivalasztott = opciok[i];
+                }
+                hely += 1;
+            }
         }
-        hely += 1;
+        else {
+            for (int i = 0; i < opciok.size(); i++) {
+                if (ev.type == ev_mouse && ev.button == btn_left && ev.pos_x >= x && ev.pos_x <= x + sizex && ev.pos_y >= y + teglalapok[hely] && ev.pos_y <= y + teglalapok[hely] + sizey) {
+                    kivalasztva = true;
+                    kivalasztott = opciok[i];
+                }
+                hely += 1;
+            }
+        }
     }
 
 }
 
+
 void Kivalaszto_os::elemek() { //összerakja a teglalapok vektort, amiben a koordináták alapján a választási lehetőségeket kiírja és kezeli
     teglalapok.clear();
-    for (int i = 1; i <= opciok.size(); i++) {
+    for (int i = 1; i <= nagysize; i++) {
         int kezdopont = i*sizey;
         teglalapok.push_back(kezdopont);
     }
