@@ -12,6 +12,11 @@ Legordulo::Legordulo(Os_alkalmazas* szulo, int x, int y, int kissizex, int kissi
 {
 }
 
+Legordulo::~Legordulo() {
+
+}
+
+
 std::string Legordulo::get_mentesstr() const{
     return kivalasztott;
 }

@@ -29,5 +29,7 @@ add_executable(CLionGraphicsKit main.cpp
         Jatek_mester.cpp
         Jatek_mester.hpp
         Os_alkalmazas.cpp
-        Os_alkalmazas.hpp)
+        Os_alkalmazas.hpp
+        Gomb.cpp
+        Gomb.hpp)
 target_link_libraries(CLionGraphicsKit graphics)
