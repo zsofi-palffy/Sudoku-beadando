@@ -20,6 +20,7 @@ public:
         gomb = new Gomb(this, szelesseg/2 + 100, magassag/2, 100, 50, true, "Játék", [=](){fajl_valaszto();});
 
         allapot();
+        megjelenitettek = {};
     }
 
     void allapot() { //menünek vagy játéktérnek megfelelő funkciók
@@ -42,21 +43,31 @@ public:
 
         int egysegx = 0;
         int egysegy = 0;
-
         int vonalx = 0;
         int vonaly = 0;
+
+        int sor = 0;
+        int oszlop = 0;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
-                        szam = new Szamlalo_nyilakkal(this, fromx1 + egysegx + vonalx, fromy1 + egysegy + vonaly, 68, 68, true, 0, 9);
-                        widgets_.push_back(szam);
+                        if (fix(sor, oszlop)) {
+                            szam = new Szamlalo_nyilakkal(this, fromx1 + egysegx + vonalx, fromy1 + egysegy + vonaly, 68, 68, true, megoldas[sor][oszlop], megoldas[sor][oszlop], true);
+                            widgets_.push_back(szam);
+                            szam->update(megoldas[sor][oszlop]);
+                        }
+                        else {
+                            szam = new Szamlalo_nyilakkal(this, fromx1 + egysegx + vonalx, fromy1 + egysegy + vonaly, 68, 68, true, 0, 9, false);
+                            widgets_.push_back(szam);
+                        }
                         egysegx += 70;
                         vonalx += 1;
                         if (l == 2) {
                             vonalx += 2;
                         }
+                        oszlop += 1;
                     }
                 }
                 egysegx = 0;
@@ -67,6 +78,8 @@ public:
                 if (j == 2) {
                     vonaly += 2;
                 }
+                oszlop = 0;
+                sor += 1;
             }
         }
     }
@@ -76,7 +89,6 @@ public:
             string feladat = szint->get_mentesstr();
             if (feladat == "1. szint") {
                 befajl.open("Elso_szint.txt");
-                beolvas();
                 megjelenitettek = {{0, 0}, {0, 4}, {0, 6}, {0, 8},
                                       {1, 1}, {1, 3}, {1, 8},
                                       {2, 2}, {2, 4}, {2, 8},
@@ -86,10 +98,10 @@ public:
                                       {6, 1}, {6, 4}, {6, 6},
                                       {7, 0}, {7, 6}, {7, 8},
                                       {8, 2}, {8, 5}, {8, 7}};
+                beolvas();
             }
             else if (feladat == "2. szint") {
                 befajl.open("Masodik_szint.txt");
-                beolvas();
                 megjelenitettek = {{0, 0}, {0, 1}, {0, 4},
                                       {1, 0}, {1, 3}, {1, 4}, {1, 5},
                                       {2, 1}, {2, 2}, {2, 7},
@@ -99,10 +111,10 @@ public:
                                       {6, 1}, {6, 6}, {6, 7},
                                       {7, 3}, {7, 4}, {7, 5}, {7, 8},
                                       {8, 4}, {8, 7}, {8, 8}};
+                beolvas();
             }
             else if (feladat == "3. szint") {
                 befajl.open("Harmadik_szint.txt");
-                beolvas();
                 megjelenitettek = {{0, 0}, {0, 3}, {0, 6},
                                       {1, 1}, {1, 4}, {1, 5}, {1, 8},
                                       {2, 2}, {2, 4}, {2, 7},
@@ -112,10 +124,10 @@ public:
                                       {6, 0}, {6, 5}, {6, 6},
                                       {7, 2}, {7, 3}, {7, 8},
                                       {8, 1}, {8, 4}, {8, 7}};
+                beolvas();
             }
             else if (feladat == "4. szint") {
                 befajl.open("Negyedik_szint.txt");
-                beolvas();
                 megjelenitettek = {{0, 2}, {0, 4}, {0, 7},
                                       {1, 1}, {1, 3}, {1, 8},
                                       {2, 0}, {2, 4}, {2, 6},
@@ -125,6 +137,7 @@ public:
                                       {6, 2}, {6, 5}, {6, 7},
                                       {7, 0}, {7, 4}, {7, 8},
                                       {8, 1}, {8, 4}};
+                beolvas();
             }
         }
         befajl.close();
@@ -143,9 +156,16 @@ public:
         menu = false;
         jatekter = true;
         allapot();
-        cout << "Beolvasva " << megoldas[0][0] << endl;
     }
 
+    bool fix(int sor, int oszlop) {
+        for (int t = 0; t < megjelenitettek.size(); t++) {
+            if (megjelenitettek[t][0] == sor && megjelenitettek[t][1] == oszlop) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 protected:
     bool menu, jatekter; //állapotok
@@ -153,9 +173,9 @@ protected:
     Legordulo* szint = nullptr; //szintválasztó
     Gomb* gomb = nullptr; //játék indítása
     Szamlalo_nyilakkal* szam = nullptr; //a számok
-    vector<string> szintek = {"1. szint", "2. szint", "3. szint", "4. szint"};
-    vector<vector<int>> megoldas, megjelenitettek = {};
-    ifstream befajl;
+    std::vector<std::string> szintek = {"1. szint", "2. szint", "3. szint", "4. szint"};
+    std::vector<std::vector<int>> megoldas, megjelenitettek;
+    std::ifstream befajl;
 };
 
 int main(){

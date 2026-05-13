@@ -5,11 +5,16 @@
 
 class Szamlalo_nyilakkal: public Szamlalo_os {
 public:
-    Szamlalo_nyilakkal(Os_alkalmazas*, int, int, int, int, bool, int, int);
+    Szamlalo_nyilakkal(Os_alkalmazas*, int, int, int, int, bool, int, int, bool);
 
     virtual void rajzol() override;
     virtual void handle(genv::event ev) override;
     virtual int get_mentesint() const override;
+
+    void update(int);
+
+protected:
+    bool fix;
 };
 
 

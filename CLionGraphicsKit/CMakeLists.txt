@@ -31,5 +31,6 @@ add_executable(CLionGraphicsKit main.cpp
         Os_alkalmazas.cpp
         Os_alkalmazas.hpp
         Gomb.cpp
-        Gomb.hpp)
+        Gomb.hpp
+)
 target_link_libraries(CLionGraphicsKit graphics)
