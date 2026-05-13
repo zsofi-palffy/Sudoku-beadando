@@ -17,9 +17,12 @@ int Szamlalo_nyilakkal::get_mentesint() const {
 }
 
 void Szamlalo_nyilakkal::rajzol() {
-    Szamlalo_os::rajzol();
-    gout.load_font("LiberationSans-BoldItalic.ttf", 60, 30);
+    //Szamlalo_os::rajzol();
+    gout.load_font("LiberationSans-BoldItalic.ttf", 30, 30);
 
+    gout << color(200, 200, 200)
+         << move_to(x, y)
+         << box(sizex, sizey);
     gout << color(200,200,200) //a nyomógombok területe
          << move_to(x + (3*sizex/4), y)
          << box(sizex/4,sizey)
@@ -31,17 +34,21 @@ void Szamlalo_nyilakkal::rajzol() {
     gout << color(0,0,0) //felfele háromszög
          << move_to(x + (3*sizex/4) + (sizex/4)/3, y + 2*(sizey/2)/3)
          << line_to(x + (3*sizex/4) + 2*(sizex/4)/3, y + 2*(sizey/2)/3)
-         << line_to(x + (3*sizex/4) + (sizex/4)/3 + ((sizex/4)/3)/2, y + (sizey/2)/3)
-         << move_to(x + (3*sizex/4) + (sizex/4)/3, y + 2*(sizey/2)/3)
-         << line_to(x + (3*sizex/4) + (sizex/4)/3 + ((sizex/4)/3)/2, y + (sizey/2)/3);
+         << line_to(x + (3*sizex/4) + (sizex/4)/2, y + (sizey/2)/3)
+         << line_to(x + (3*sizex/4) + (sizex/4)/3, y + 2*(sizey/2)/3);
     gout << color(0,0,0) //lefele háromszög
          << move_to(x + (3*sizex/4) + (sizex/4)/3, y + sizey/2 + (sizey/2)/3)
          << line_to(x + (3*sizex/4) + 2*(sizex/4)/3, y + sizey/2 + (sizey/2)/3)
-         << line_to(x + (3*sizex/4) + (sizex/4)/3 + ((sizex/4)/3)/2, y + sizey/2 + 2*(sizey/2)/3)
-         << move_to(x + (3*sizex/4) + (sizex/4)/3, y + sizey/2 + (sizey/2)/3)
-         << line_to(x + (3*sizex/4) + (sizex/4)/3 + ((sizex/4)/3)/2, y + sizey/2 + 2*(sizey/2)/3);
-    gout << color(0,0,0)
-         << move_to(x + 12, y + 15)
+         << line_to(x + (3*sizex/4) + (sizex/4)/2, y + sizey/2 + 2*(sizey/2)/3)
+         << line_to(x + (3*sizex/4) + (sizex/4)/3, y + sizey/2 + (sizey/2)/3);
+
+    if (szam == 0) {
+         gout << color(200, 200, 200);
+    }
+    else {
+         gout << color(0, 0, 0);
+    }
+    gout << move_to(x + 20, y + 15)
          << text(std::to_string(szam));
 }
 
