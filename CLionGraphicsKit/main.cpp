@@ -9,9 +9,9 @@
 
 using namespace std;
 
-class App: public Os_alkalmazas{
+class Jatek_mester: public Os_alkalmazas{
 public:
-    App(int szelesseg, int magassag): Os_alkalmazas(szelesseg, magassag)
+    Jatek_mester(int szelesseg, int magassag): Os_alkalmazas(szelesseg, magassag)
     {
         menu = true;
         hatter = new Sudoku_rajz(this, 0, 0, szelesseg, magassag, false);
@@ -180,7 +180,7 @@ protected:
 
 int main(){
 
-    App app(800, 800);
+    Jatek_mester app(800, 800);
 
     app.event_loop();
 
