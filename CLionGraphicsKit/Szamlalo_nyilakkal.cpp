@@ -8,6 +8,7 @@ using namespace genv;
 Szamlalo_nyilakkal::Szamlalo_nyilakkal(Os_alkalmazas* szulo, int x, int y, int sizex, int sizey, bool kell, int minimum, int maximum, bool fix):
                     Szamlalo_os(szulo, x, y, sizex, sizey, kell, minimum, maximum, 0), fix(fix)
 {
+     piros = false;
 }
 
 int Szamlalo_nyilakkal::get_mentesint() const {
@@ -69,4 +70,8 @@ void Szamlalo_nyilakkal::handle(genv::event ev) {
 
 void Szamlalo_nyilakkal::update(int ertek) {
      szam = ertek;
+}
+
+void Szamlalo_nyilakkal::setPiros(bool hibas) {
+     piros = hibas;
 }

@@ -167,6 +167,19 @@ public:
         return false;
     }
 
+    void hiba() {
+        for (int i = 0; i < 9; i++) {
+            vector<int> sor = {};
+            for (int j = 0; j < 9; j++) {
+                int aktualis = widgets_[i*9 + j]->get_mentesint();
+                sor.push_back(aktualis);
+            }
+            beallitott.push_back(sor);
+        }
+
+
+    }
+
 protected:
     bool menu, jatekter; //állapotok
     Sudoku_rajz* hatter = nullptr; //a háttér
@@ -174,7 +187,7 @@ protected:
     Gomb* gomb = nullptr; //játék indítása
     Szamlalo_nyilakkal* szam = nullptr; //a számok
     std::vector<std::string> szintek = {"1. szint", "2. szint", "3. szint", "4. szint"};
-    std::vector<std::vector<int>> megoldas, megjelenitettek;
+    std::vector<std::vector<int>> megoldas, megjelenitettek, beallitott; //a megoldás, a fix számok és az éppen aktuálisan megjelenített számok vektorai
     std::ifstream befajl;
 };
 

@@ -13,8 +13,10 @@ public:
 
     void update(int);
 
+    void setPiros(bool);
+
 protected:
-    bool fix;
+    bool fix, piros;
 };
 
 
