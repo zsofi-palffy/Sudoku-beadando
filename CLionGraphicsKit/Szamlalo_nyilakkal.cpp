@@ -1,6 +1,9 @@
 #include "Szamlalo_nyilakkal.hpp"
 #include <iostream>
+#include <functional>
 #include "graphics.hpp"
+#include "Jatek_mester.hpp"
+#include "Os_alkalmazas.hpp"
 //az a számláló widget, amelyen a fel és le nyilas gombokkal lehet állítani a szám értékét
 
 using namespace genv;
@@ -45,6 +48,9 @@ void Szamlalo_nyilakkal::rajzol() {
     if (szam == 0) {
          gout << color(200, 200, 200);
     }
+    else if (piros) {
+          gout << color(255, 0, 0);
+    }
     else {
          gout << color(0, 0, 0);
     }
@@ -66,6 +72,13 @@ void Szamlalo_nyilakkal::handle(genv::event ev) {
 
      mini();
      maxi();
+
+     if (valtozas) {
+          valtozas();
+     }
+
+     rajzol();
+     gout << refresh;
 }
 
 void Szamlalo_nyilakkal::update(int ertek) {

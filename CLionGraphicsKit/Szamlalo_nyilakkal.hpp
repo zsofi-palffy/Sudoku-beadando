@@ -1,6 +1,7 @@
 #ifndef CLIONGRAPHICSKIT_SZAMLALO_NYILAKKAL_H
 #define CLIONGRAPHICSKIT_SZAMLALO_NYILAKKAL_H
 #include "Szamlalo_os.hpp"
+#include <functional>
 //Az a számláló widget, amelyen a fel és le nyilas gombokkal lehet állítani a szám értékét
 
 class Szamlalo_nyilakkal: public Szamlalo_os {
@@ -14,6 +15,7 @@ public:
     void update(int);
 
     void setPiros(bool);
+    std::function<void()> valtozas;
 
 protected:
     bool fix, piros;
