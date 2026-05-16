@@ -12,5 +12,5 @@ Egy szám beállítása után, ütközés esetén (tehát, ha az adott egységbe
 ezzel jelezve a hibát.  
 
 #Fejlesztés  
-2026.04.28. Folyamatban
+2026.04.28. Folyamatban 
 2026.05.16. Befejezve
