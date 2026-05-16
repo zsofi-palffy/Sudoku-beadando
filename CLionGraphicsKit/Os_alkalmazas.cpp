@@ -40,5 +40,9 @@ void Os_alkalmazas::event_loop() {
             w->rajzol();
         }
         gout << refresh;
+
+        if (ev.type == ev_key && ev.keycode == key_escape) {
+            exit(0);
+        }
     }
 }
