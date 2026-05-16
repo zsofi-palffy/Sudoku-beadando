@@ -14,6 +14,10 @@ Widget::Widget(Os_alkalmazas *szulo, int xx, int yy, int sx, int sy, bool kell):
     szulo->register_widgets(this, kell);
 }
 
+Widget::~Widget() {
+
+}
+
 int Widget::get_mentesint() const {
     return 0;
 }

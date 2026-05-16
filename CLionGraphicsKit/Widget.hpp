@@ -7,6 +7,7 @@ class Os_alkalmazas;
 class Widget {
 public:
     Widget(Os_alkalmazas*, int, int, int, int, bool);
+    ~Widget();
     bool jelenlegi(int, int);
 
     virtual void rajzol() = 0;

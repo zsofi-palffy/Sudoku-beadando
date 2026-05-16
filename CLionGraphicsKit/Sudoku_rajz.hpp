@@ -12,6 +12,7 @@ public:
     virtual void handle(genv::event);
 
     void racs() const;
+    void gameover();
 };
 
 #endif //CLIONGRAPHICSKIT_SUDOKU_H

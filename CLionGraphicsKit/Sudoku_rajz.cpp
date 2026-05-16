@@ -92,6 +92,15 @@ void Sudoku_rajz::racs() const{
      gout << refresh;
 }
 
+void Sudoku_rajz::gameover() {
+     gout.load_font("LiberationSerif-BoldItalic.ttf", 20);
+     gout << color(14, 190, 39)
+          << move_to(580, 80)
+          << text("Jó megoldás! :)")
+          << move_to(80, 80)
+          << text("Gratulálok!");
+}
+
 void Sudoku_rajz::handle(genv::event) {
 
 }

@@ -14,6 +14,7 @@ public:
     {
         menu = true;
         jatekter = false;
+        vege = false;
         hatter = new Sudoku_rajz(this, 0, 0, szelesseg, magassag, false);
         hatter->rajzol();
         szint = new Legordulo(this, szelesseg/2 - 250, magassag/2, 300, 50, true, 4, szintek);
@@ -25,6 +26,7 @@ public:
 
     void allapot() { //menünek vagy játéktérnek megfelelő funkciók
         if (menu) {
+            widgets_.clear();
             szint = new Legordulo(this, szelesseg/2 - 250, magassag/2, 300, 50, true, 4, szintek);
             gomb = new Gomb(this, szelesseg/2 + 100, magassag/2, 100, 50, true, "Játék", [=](){fajl_valaszto();});
         }
@@ -34,6 +36,9 @@ public:
             hatter->racs();
 
             feltolt();
+        }
+        else if (vege) {
+            hatter->gameover();
         }
     }
 
@@ -141,9 +146,11 @@ public:
             }
         }
         befajl.close();
+        befajl.clear();
     }
 
     void beolvas() { //a fájl beolvasása
+        megoldas.clear();
         for (int i = 0; i < 9; i++) {
             vector<int> sor = {};
             for (int j = 0; j < 9; j++) {
@@ -169,6 +176,7 @@ public:
 
     void hiba() {
         beallitott.clear();
+        van_hiba = false;
         for (int i = 0; i < 9; i++) {
             vector<int> sor = {};
             for (int j = 0; j < 9; j++) {
@@ -184,10 +192,12 @@ public:
                 for (int ertek= 0; ertek < 9; ertek++) {
                     if (beallitott[sor][oszlop] == beallitott[sor][ertek] && oszlop != ertek && beallitott[sor][oszlop] != 0) {
                         hibas = true;
+                        van_hiba = true;
                         break;
                     }
                     if (beallitott[sor][oszlop] == beallitott[ertek][oszlop] && sor != ertek && beallitott[sor][oszlop] != 0) {
                         hibas = true;
+                        van_hiba = true;
                         break;
                     }
                     int sorhely = sor % 3;
@@ -198,6 +208,7 @@ public:
                                 for (int l = 0; l < 3; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -208,6 +219,7 @@ public:
                                 for (int l = -1; l < 2; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -218,6 +230,7 @@ public:
                                 for (int l = -2; l < 1; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -230,6 +243,7 @@ public:
                                 for (int l = 0; l < 3; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -240,6 +254,7 @@ public:
                                 for (int l = -1; l < 2; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -250,6 +265,7 @@ public:
                                 for (int l = -2; l < 1; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -262,6 +278,7 @@ public:
                                 for (int l = 0; l < 3; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -272,6 +289,7 @@ public:
                                 for (int l = -1; l < 2; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -282,6 +300,7 @@ public:
                                 for (int l = -2; l < 1; l++) {
                                     if (beallitott[sor][oszlop] == beallitott[sor+k][oszlop+l] && !(k == 0 && l == 0) && beallitott[sor][oszlop] != 0) {
                                         hibas = true;
+                                        van_hiba = true;
                                         break;
                                     }
                                 }
@@ -292,10 +311,27 @@ public:
                 dynamic_cast<Szamlalo_nyilakkal*>(widgets_[sor*9 + oszlop])->setPiros(hibas);
             }
         }
+        kesz();
+    }
+
+    void kesz() {
+        int van0 = false;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (beallitott[i][j] == 0 || van_hiba) {
+                    van0 = true;
+                }
+            }
+        }
+        if (van0 == false) {
+            vege = true;
+            jatekter = false;
+            allapot();
+        }
     }
 
 protected:
-    bool menu, jatekter; //állapotok
+    bool menu, jatekter, vege; //állapotok
     Sudoku_rajz* hatter = nullptr; //a háttér
     Legordulo* szint = nullptr; //szintválasztó
     Gomb* gomb = nullptr; //játék indítása
@@ -303,7 +339,7 @@ protected:
     std::vector<std::string> szintek = {"1. szint", "2. szint", "3. szint", "4. szint"};
     std::vector<std::vector<int>> megoldas, megjelenitettek, beallitott; //a megoldás, a fix számok és az éppen aktuálisan megjelenített számok vektorai
     std::ifstream befajl;
-    bool hibas = false;
+    bool hibas = false, van_hiba = false;
 };
 
 int main(){
